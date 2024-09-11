@@ -31,11 +31,14 @@
           v-model="loginForm.password"
           name="password"
           placeholder="请输入密码"
+          :type="passwordType"
         ></el-input>
-        <span class="show-pwd">
+        <span class="show-pwd" @click="onChangePwdType">
           <el-icon>
             <!-- <Avatar /> -->
-            <svg-icon icon="eye" />
+            <svg-icon
+              :icon="passwordType === 'password' ? 'eye' : 'eye-open'"
+            />
           </el-icon>
         </span>
       </el-form-item>
@@ -52,11 +55,12 @@ import { ref } from 'vue'
 import { validatePassword } from './rules'
 // import SvgIcon from '@/components/SvgIcon/index.vue'
 // import { Avatar } from '@element-plus/icons'
+// 登录用户名密码
 const loginForm = ref({
   userName: 'super-admin',
   password: '123456'
 })
-
+// 登录验证规则
 const loginRules = {
   userName: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
   password: [
@@ -66,6 +70,17 @@ const loginRules = {
       validator: validatePassword()
     }
   ]
+}
+// 密码显示隐藏
+const passwordType = ref('password')
+// 点击图标密码显示隐藏
+const onChangePwdType = () => {
+  // passwordType的值为password时，改为text，否则改为password
+  if (passwordType.value === 'password') {
+    passwordType.value = 'text'
+  } else {
+    passwordType.value = 'password'
+  }
 }
 </script>
 
