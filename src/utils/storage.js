@@ -17,13 +17,13 @@ export const setItem = (key, value) => {
  */
 
 export const getItem = (key) => {
-  const value = window.localStorage.getItem(key)
+  const data = window.localStorage.getItem(key)
   try {
     // 尝试将value转换为json对象
-    return JSON.parse(value)
+    return JSON.parse(data)
   } catch (error) {
     // 如果转换失败则直接返回
-    return value
+    return data
   }
 }
 

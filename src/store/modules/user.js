@@ -2,6 +2,7 @@ import { login } from '@/api/sys'
 import { setItem, getItem } from '@/utils/storage'
 import md5 from 'md5'
 import TOKEN from '@/constant'
+import router from '@/router'
 
 // 登录操作
 export default {
@@ -16,15 +17,17 @@ export default {
     }
   },
   actions: {
-    login(context, useInfo) {
-      const { username, password } = useInfo
+    login(context, userInfo) {
+      const { username, password } = userInfo
       return new Promise((resolve, reject) => {
         login({
           username,
           password: md5(password)
         }).then(data => {
-          context.commit('user/setToken', data.token)
-          resolve(data)
+          this.commit('user/setToken', data.token)
+          // 登录成功跳转到首页
+          router.push('/')
+          resolve()
         }).catch(error => {
           reject(error)
         })

@@ -11,7 +11,7 @@
         <h3 class="title">用户登录</h3>
       </div>
       <!-- userName -->
-      <el-form-item prop="userName">
+      <el-form-item prop="username">
         <span class="svg-container">
           <!-- <el-icon>
             <Avatar />
@@ -20,8 +20,8 @@
           <svg-icon icon="user" />
         </span>
         <el-input
-          v-model="loginForm.userName"
-          name="userName"
+          v-model="loginForm.username"
+          name="username"
           placeholder="请输入用户名"
           type="text"
         ></el-input>
@@ -67,12 +67,12 @@ import { validatePassword } from './rules'
 // import { Avatar } from '@element-plus/icons'
 // 登录用户名密码
 const loginForm = ref({
-  userName: 'super-admin',
+  username: 'super-admin',
   password: '123456'
 })
 // 登录验证规则
 const loginRules = {
-  userName: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
+  username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
   password: [
     {
       required: true,
