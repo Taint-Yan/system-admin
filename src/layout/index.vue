@@ -20,12 +20,12 @@
 import Sidebar from './components/Sidebar/index.vue'
 import Navbar from './components/Navbar.vue'
 import AppMain from './components/AppMain.vue'
-import variables from '@styles/variables.scss'
+import variables from '@/styles/variables.scss'
 </script>
 
 <style lang="scss" scoped>
 @import '~@/styles/variables.scss';
-@import '~@styles/mixin.scss';
+@import '~@/styles/mixin.scss';
 
 .app-wrapper {
   @include clearfix;
@@ -39,6 +39,6 @@ import variables from '@styles/variables.scss'
   top: 0;
   right: 0;
   z-index: 9;
-  width: calc(100%- #{sideBarWidth});
+  width: calc(100% - #{sideBarWidth});
 }
 </style>
