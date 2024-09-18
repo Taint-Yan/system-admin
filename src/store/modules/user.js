@@ -1,7 +1,7 @@
 import { login } from '@/api/sys'
 import { setItem, getItem } from '@/utils/storage'
 import md5 from 'md5'
-import TOKEN from '@/constant'
+import { TOKEN } from '@/constant'
 import router from '@/router'
 
 // 登录操作

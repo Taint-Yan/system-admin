@@ -4,7 +4,9 @@
  */
 
 export const setItem = (key, value) => {
-  // 将数组、对象类型的数据转换为json字符串
+  // value 分为两种情况：
+  // 1.基本数据类型
+  // 2.复杂数据类型
   if (typeof value === 'object') {
     value = JSON.stringify(value)
   }
