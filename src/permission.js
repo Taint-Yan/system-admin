@@ -10,13 +10,16 @@ import store from './store'
 // 白名单
 const whiteList = ['/login']
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   // 获取token
   if (store.getters.token) {
     // 用户已登录，则不允许进入登录页面
     if (to.path === '/login') {
       next('/')
     } else {
+      if (!store.getters.hasUserInfo) {
+        await store.dispatch('user/getUserInfo')
+      }
       next()
     }
   } else {
