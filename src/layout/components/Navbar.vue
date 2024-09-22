@@ -19,7 +19,9 @@
             <a target="_blank" href="#">
               <el-dropdown-item divided>个人中心</el-dropdown-item>
             </a>
-            <el-dropdown-item divided>退出登录</el-dropdown-item>
+            <el-dropdown-item divided @click="logout"
+              >退出登录</el-dropdown-item
+            >
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -27,7 +29,16 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useStore } from 'vuex'
+
+const store = useStore()
+
+// console.log('userInfo===>', store.getters.userInfo)
+const logout = () => {
+  store.dispatch('user/logout')
+}
+</script>
 
 <style lang="scss" scoped>
 .navbar-container {
