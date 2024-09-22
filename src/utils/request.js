@@ -1,6 +1,7 @@
 import axios from 'axios'
 import store from '@/store'
 import { ElMessage } from 'element-plus'
+import { isCheckTimeOut } from '@/utils/auth'
 import md5 from 'md5'
 
 const service = axios.create({
@@ -17,6 +18,10 @@ service.interceptors.request.use(
     config.headers.codeType = time
     // 同意注入 token
     if (store.getters.token) {
+      if (isCheckTimeOut()) {
+        store.dispatch('user/logout')
+        return Promise.reject(new Error('token超时'))
+      }
       config.headers.Authorization = `Bearer ${store.getters.token}`
     }
     return config // 必须返回配置
@@ -43,6 +48,10 @@ service.interceptors.response.use(
   },
   // 请求失败
   error => {
+    // 处理token超时
+    if (error.response && error.response.data && error.response.data.code === 401) {
+      store.dispatch('user/logout')
+    }
     // 返回错误信息
     ElMessage.error(error.message) // 提示错误信息
     return Promise.reject(error)
