@@ -17,7 +17,7 @@
               <el-dropdown-item>首页</el-dropdown-item>
             </router-link>
             <a target="_blank" href="#">
-              <el-dropdown-item divided>个人中心</el-dropdown-item>
+              <el-dropdown-item divided>用户信息</el-dropdown-item>
             </a>
             <el-dropdown-item divided @click="logout"
               >退出登录</el-dropdown-item
